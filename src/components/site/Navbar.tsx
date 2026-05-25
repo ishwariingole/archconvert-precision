@@ -30,7 +30,7 @@ export function Navbar() {
           {user ? (
             <>
               <span className="inline-flex items-center gap-1.5 rounded-full bg-charcoal text-primary-foreground px-3 py-1 text-xs">
-                <Coins size={13} /> {profile?.tokens ?? 0} Tokens
+                <Coins size={13} /> ₹{profile?.wallet_balance ?? profile?.tokens ?? 0}
               </span>
               <button onClick={async () => { await signOut(); nav({ to: "/" }); }} className="text-sm text-muted-foreground hover:text-foreground">Sign out</button>
             </>

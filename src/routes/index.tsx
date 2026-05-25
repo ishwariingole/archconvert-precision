@@ -48,7 +48,7 @@ function Index() {
             <div key={k} className="flex gap-16 px-8">
               <span>2,400+ Files Converted</span><span>·</span>
               <span>340+ Architects</span><span>·</span>
-              <span>50,000+ Tokens Used</span><span>·</span>
+              <span>₹50 Conversion Credit Per File</span><span>·</span>
               <span>Trusted by Studios Across India</span><span>·</span>
             </div>
           ))}
@@ -95,14 +95,14 @@ function Index() {
       <section className="bg-beige py-24 px-6">
         <div className="max-w-6xl mx-auto">
           <FadeIn>
-            <p className="label-eyebrow text-terracotta">Tokens</p>
-            <h2 className="font-display text-4xl md:text-5xl mt-3">How Tokens Work</h2>
+            <p className="label-eyebrow text-terracotta">Wallet</p>
+            <h2 className="font-display text-4xl md:text-5xl mt-3">How Wallet Credit Works</h2>
           </FadeIn>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-12">
             {[
-              { Icon: Gift, t: "10 free tokens on signup" },
-              { Icon: Zap, t: "1–4 tokens per conversion" },
-              { Icon: InfIcon, t: "Tokens never expire" },
+              { Icon: Gift, t: "Top up before using tools" },
+              { Icon: Zap, t: "₹50 deducted per conversion" },
+              { Icon: InfIcon, t: "Wallet balance never expires" },
               { Icon: BarChart3, t: "Full usage history in dashboard" },
             ].map(({ Icon, t }, i) => (
               <FadeIn key={t} delay={i * 80}>
@@ -117,7 +117,7 @@ function Index() {
             <div className="mt-10 bg-background border border-border rounded p-8 max-w-md">
               <p className="label-eyebrow text-muted-foreground">Wallet Balance</p>
               <p className="font-display text-6xl mt-2">120</p>
-              <p className="text-sm text-muted-foreground">Tokens available</p>
+              <p className="text-sm text-muted-foreground">₹ available</p>
               <div className="flex items-end gap-1.5 mt-6 h-16">
                 {[40, 25, 60, 35, 80, 50, 70].map((h, i) => (
                   <div key={i} className="flex-1 bg-terracotta/80 rounded-sm" style={{ height: `${h}%` }} />

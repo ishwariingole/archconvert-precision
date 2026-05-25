@@ -24,7 +24,7 @@ export function ToolsGrid() {
                 <p className="text-sm text-muted-foreground mt-2 flex-1">{t.description}</p>
                 <div className="flex items-center justify-between mt-6">
                   <span className="inline-flex items-center bg-charcoal text-primary-foreground px-3 py-1 rounded-full text-xs">
-                    {t.tokens} {t.tokens === 1 ? "Token" : "Tokens"}
+                    ₹{t.costInr} / conversion
                   </span>
                   <button onClick={() => setActive(t)} className="text-terracotta text-sm inline-flex items-center gap-1 hover:underline">
                     Use Tool <ArrowRight size={14} />

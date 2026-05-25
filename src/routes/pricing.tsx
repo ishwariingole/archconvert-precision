@@ -16,9 +16,9 @@ export const Route = createFileRoute("/pricing")({
 });
 
 const PLANS: Plan[] = [
-  { name: "Starter", tokens: 50, price: 199 },
-  { name: "Professional", tokens: 150, price: 499 },
-  { name: "Studio", tokens: 500, price: 1299 },
+  { name: "Starter", tokens: 100, price: 100 },
+  { name: "Professional", tokens: 300, price: 300 },
+  { name: "Studio", tokens: 500, price: 500 },
 ];
 
 function PricingPage() {
@@ -28,8 +28,8 @@ function PricingPage() {
       <div className="max-w-6xl mx-auto">
         <FadeIn>
           <p className="label-eyebrow text-terracotta">Pricing</p>
-          <h1 className="font-display text-5xl mt-3">Top Up Your Tokens</h1>
-          <p className="text-muted-foreground mt-3">Pay once. Tokens never expire.</p>
+          <h1 className="font-display text-5xl mt-3">Top Up Your Wallet</h1>
+          <p className="text-muted-foreground mt-3">Add balance once. Wallet credits never expire.</p>
         </FadeIn>
         <div className="grid md:grid-cols-3 gap-6 mt-12 items-stretch">
           {PLANS.map((p, i) => {
@@ -39,16 +39,15 @@ function PricingPage() {
                 <div className={`relative bg-background rounded p-8 h-full lift ${featured ? "border-2 border-charcoal md:scale-105" : "border border-border"}`}>
                   {featured && <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-terracotta text-primary-foreground label-eyebrow px-3 py-1 rounded">Most Popular</span>}
                   <h3 className="font-display text-2xl">{p.name}</h3>
-                  <p className="font-display text-5xl mt-4">{p.tokens}<span className="text-base text-muted-foreground"> tokens</span></p>
-                  <p className="text-2xl mt-2">₹{p.price.toLocaleString("en-IN")}</p>
+                  <p className="font-display text-5xl mt-4">₹{p.tokens}<span className="text-base text-muted-foreground"> balance</span></p>
                   <ul className="text-sm text-muted-foreground mt-6 space-y-1.5">
                     <li>· No expiry</li>
-                    <li>· All four tools</li>
-                    <li>· Priority email support</li>
+                    <li>· Use any tool</li>
+                    <li>· ₹50 deducted per conversion</li>
                   </ul>
                   <button onClick={() => setActive(p)}
                     className={`mt-8 w-full py-2.5 rounded text-sm ${featured ? "bg-charcoal text-primary-foreground" : "border border-charcoal text-charcoal"}`}>
-                    Buy Tokens
+                    Add Money
                   </button>
                 </div>
               </FadeIn>

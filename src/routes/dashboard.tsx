@@ -35,9 +35,9 @@ function Dashboard() {
 
         <div className="grid md:grid-cols-3 gap-6 mt-10">
           <div className="bg-beige rounded p-8 md:col-span-2">
-            <p className="label-eyebrow text-muted-foreground">Token Balance</p>
-            <p className="font-display text-[64px] leading-none mt-3">{profile?.tokens ?? 0}</p>
-            <Link to="/pricing" className="mt-6 inline-block bg-terracotta text-primary-foreground px-5 py-2.5 rounded text-sm">Buy More Tokens</Link>
+            <p className="label-eyebrow text-muted-foreground">Wallet Balance</p>
+            <p className="font-display text-[64px] leading-none mt-3">₹{profile?.wallet_balance ?? profile?.tokens ?? 0}</p>
+            <Link to="/pricing" className="mt-6 inline-block bg-terracotta text-primary-foreground px-5 py-2.5 rounded text-sm">Add Money</Link>
           </div>
           <div className="bg-card border border-border rounded p-6">
             <p className="label-eyebrow text-muted-foreground">Profile</p>
@@ -52,7 +52,7 @@ function Dashboard() {
           <table className="w-full text-sm">
             <thead className="bg-charcoal text-primary-foreground">
               <tr>
-                {["Date", "Tool", "File", "Tokens", "Status", ""].map(h => (
+                {["Date", "Tool", "File", "Amount", "Status", ""].map(h => (
                   <th key={h} className="text-left px-4 py-3 font-normal label-eyebrow">{h}</th>
                 ))}
               </tr>
@@ -66,7 +66,7 @@ function Dashboard() {
                   <td className="px-4 py-3">{new Date(c.created_at).toLocaleDateString()}</td>
                   <td className="px-4 py-3">{c.tool}</td>
                   <td className="px-4 py-3">{c.file_name}</td>
-                  <td className="px-4 py-3">{c.tokens_used}</td>
+                  <td className="px-4 py-3">₹{c.tokens_used}</td>
                   <td className="px-4 py-3"><span className="text-olive">● {c.status}</span></td>
                   <td className="px-4 py-3"><a href="#" className="text-terracotta">Download</a></td>
                 </tr>
