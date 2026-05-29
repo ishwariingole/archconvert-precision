@@ -19,6 +19,7 @@ type PaymentPlan = {
   name: string;
   credits: number;
   priceInr: number;
+  
 };
 
 const PAYMENT_PLANS: Record<string, PaymentPlan> = {
@@ -64,6 +65,8 @@ function corsHeaders(): HeadersInit {
     "access-control-allow-origin": "*",
     "access-control-allow-methods": "GET,POST,OPTIONS",
     "access-control-allow-headers": "content-type, authorization, x-razorpay-signature",
+    // Expose these headers to the browser so client-side code can read them if needed
+    "access-control-expose-headers": "x-rtb-fingerprint-id, request-id, x-razorpay-signature",
     "access-control-max-age": "86400",
     vary: "origin",
   };

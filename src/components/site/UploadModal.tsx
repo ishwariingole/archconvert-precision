@@ -160,7 +160,7 @@ export function UploadModal({ tool, onClose }: { tool: Tool; onClose: () => void
           <div>
             <p className="label-eyebrow text-terracotta">Selected Tool</p>
             <h2 className="font-display text-3xl mt-1">{tool.name}</h2>
-            <p className="text-sm text-muted-foreground mt-1">Uses the same upload/status/download backend API as the hosted HTML</p>
+            {/* <p className="text-sm text-muted-foreground mt-1">Uses the same upload/status/download backend API as the hosted HTML</p> */}
           </div>
           <button onClick={onClose}><X /></button>
         </div>

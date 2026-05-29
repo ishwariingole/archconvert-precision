@@ -7,7 +7,7 @@ export const Route = createFileRoute("/tools")({
   head: () => ({
     meta: [
       { title: "Tools — ArchConvert" },
-      { name: "description", content: "Greyscale, hatch removal, and CAD layer structuring pipelines." },
+      { name: "description", content: "Greyscale" },
       { property: "og:title", content: "Tools — ArchConvert" },
       { property: "og:description", content: "Four professional conversion pipelines for architectural drawings." },
     ],

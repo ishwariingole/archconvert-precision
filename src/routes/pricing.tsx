@@ -29,7 +29,7 @@ function PricingPage() {
         <FadeIn>
           <p className="label-eyebrow text-terracotta">Pricing</p>
           <h1 className="font-display text-5xl mt-3">Top Up Your Wallet</h1>
-          <p className="text-muted-foreground mt-3">Add balance once. Wallet credits never expire.</p>
+          <p className="text-muted-foreground mt-3">New users get ₹100 free on signup (2 conversions). Wallet credits never expire.</p>
         </FadeIn>
         <div className="grid md:grid-cols-3 gap-6 mt-12 items-stretch">
           {PLANS.map((p, i) => {

@@ -36,7 +36,7 @@ export function PaymentModal({ plan, onClose }: { plan: Plan; onClose: () => voi
   const createOrderFn = useServerFn(createPaymentOrder);
   const verifyPaymentFn = useServerFn(verifyPaymentAndCreditWallet);
 
-  const startPayment = async () => {
+const startPayment = async () => {
     if (!user || !session) {
       toast.error("Please sign in to add money to your wallet");
       return;
@@ -45,51 +45,33 @@ export function PaymentModal({ plan, onClose }: { plan: Plan; onClose: () => voi
     setVerifying(true);
 
     try {
+      // ✅ Load script FIRST before calling server function
+      const loaded = await loadRazorpayScript();
+      if (!loaded || !window.Razorpay) {
+        throw new Error("Unable to load Razorpay Checkout");
+      }
+
+      // Then create order
       const orderData = await createOrderFn({
         data: {
           planName: plan.name,
           accessToken: session.access_token,
         },
       });
-
-      const loaded = await loadRazorpayScript();
-      if (!loaded || !window.Razorpay) {
-        throw new Error("Unable to load Razorpay Checkout");
-      }
+// ← ADD THESE
+console.log("Full orderData:", JSON.stringify(orderData));
+console.log("key_id value:", orderData?.key_id);
+console.log("order:", orderData?.order);
+      console.log("key_id:", orderData.key_id); // ← verify
 
       const gateway = new window.Razorpay({
         key: orderData.key_id,
-        amount: orderData.order.amount,
-        currency: orderData.order.currency,
-        order_id: orderData.order.id,
-        name: "ArchConvert",
-        description: `Add ₹${plan.tokens} wallet balance`,
-        prefill: {
-          name: user.user_metadata?.full_name || user.email || "Customer",
-          email: user.email || "",
-        },
-        theme: { color: "#1C1C1C" },
-        handler: async (response: any) => {
-          await verifyPaymentFn({
-            data: {
-              accessToken: session.access_token,
-              planName: plan.name,
-              razorpay_order_id: response.razorpay_order_id,
-              razorpay_payment_id: response.razorpay_payment_id,
-              razorpay_signature: response.razorpay_signature,
-            },
-          });
-
-          await refreshProfile();
-          toast.success(`Wallet credited with ₹${plan.tokens}`);
-          onClose();
-          setVerifying(false);
-        },
+        // ... rest same
       });
 
       gateway.on("payment.failed", (payload: any) => {
         setVerifying(false);
-        toast.error(payload?.error?.description || "Payment failed");
+        toast.error((payload as any)?.error?.description || "Payment failed");
       });
 
       gateway.open();

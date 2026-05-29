@@ -27,7 +27,7 @@ function getRazorpayConfig() {
 
   if (!keyId || !keySecret) {
     throw new Error("Missing Razorpay env vars: RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET");
-  }
+  } 
 
   return { keyId, keySecret };
 }
@@ -52,17 +52,22 @@ export const createPaymentOrder = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     const planKey = normalizePlanKey(data.planName);
     const plan = PAYMENT_PLANS[planKey];
+        const { keyId, keySecret } = getRazorpayConfig();
+
+       console.log("keyId:", keyId ? "SET" : "MISSING") // ← add this
+    console.log("planName:", data.planName)    
     if (!plan) {
       throw new Error("Invalid top-up plan");
     }
 
     const userId = await resolveUserIdFromAccessToken(data.accessToken);
-    const { keyId, keySecret } = getRazorpayConfig();
+    // const { keyId, keySecret } = getRazorpayConfig();
 
     // Razorpay enforces a max length of 40 chars for the `receipt` field.
     // Use a shortened user id slice plus timestamp to keep it under the limit.
     const receiptId = `wallet_${userId.slice(0, 8)}_${Date.now()}`;
 
+    
     const response = await fetch("https://api.razorpay.com/v1/orders", {
       method: "POST",
       headers: {

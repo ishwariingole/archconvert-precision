@@ -1,7 +1,13 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "tanstack-start-app",
+  "name": "archconvert",
   "compatibility_date": "2025-09-24",
   "compatibility_flags": ["nodejs_compat"],
   "main": "src/server.ts",
+  "routes": [
+    {
+      "pattern": "archconvert.tvumtech.in",
+      "custom_domain": true
+    }
+  ]
 }
